@@ -1,0 +1,136 @@
+.footer {
+  border-top: 1px solid var(--hairline);
+  background: var(--surface-1);
+  padding: var(--space-12) 0 var(--space-6);
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* Top section: 3-column */
+.top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--space-10);
+  margin-bottom: var(--space-10);
+}
+
+/* Brand column */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: var(--text-high);
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-low);
+  line-height: 20px;
+  max-width: 260px;
+}
+
+/* Social links */
+.socials {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface-2);
+  color: var(--text-mid);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Link columns */
+.linkCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.colTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.colNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.link {
+  font-size: 14px;
+  color: var(--text-mid);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.link:hover {
+  color: var(--text-high);
+}
+
+/* Bottom bar */
+.bottom {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.copy {
+  font-size: 12px;
+  color: var(--text-low);
+}
+
+.legal {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .top {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

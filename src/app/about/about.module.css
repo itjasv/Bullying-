@@ -1,0 +1,119 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+  padding-bottom: var(--space-16);
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-10);
+}
+
+/* Mission */
+.mission {
+  margin-bottom: var(--space-12);
+}
+
+.missionText {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-high);
+  line-height: 32px;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.02em;
+}
+
+.missionBody {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 26px;
+  margin-bottom: var(--space-4);
+}
+
+/* Values */
+.values {
+  margin-bottom: var(--space-12);
+}
+
+.subHeading {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-6);
+}
+
+.valueList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.valueItem {
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--primary);
+}
+
+.valueTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.valueDesc {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+}
+
+/* Team */
+.team {
+  margin-bottom: var(--space-12);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.teamCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.teamName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-high);
+  margin-bottom: 2px;
+}
+
+.teamRole {
+  font-size: 13px;
+  color: var(--text-low);
+}
+
+@media (max-width: 767px) {
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}

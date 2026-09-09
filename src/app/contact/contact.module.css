@@ -1,0 +1,140 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+  padding-bottom: var(--space-16);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-10);
+  align-items: flex-start;
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 24px;
+  margin-bottom: var(--space-8);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.infoCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.infoTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.infoText {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+}
+
+.teamList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.teamMember {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.teamMember:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.teamName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-high);
+}
+
+.teamRole {
+  font-size: 12px;
+  color: var(--text-low);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Success ---- */
+.successCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.successSoul {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.6;
+  margin-bottom: var(--space-4);
+}
+
+.successText {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+  margin-bottom: var(--space-6);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .heading { font-size: 28px; }
+  .sidebar { order: 2; }
+}

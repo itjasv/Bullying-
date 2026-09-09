@@ -1,0 +1,328 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-8));
+  padding-bottom: var(--space-16);
+  position: relative;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  position: relative;
+  z-index: 2;
+}
+
+/* ===============================================
+   SONAR CANVAS — expanding pulse rings + grid
+   =============================================== */
+.sonarCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===============================================
+   HEADING
+   =============================================== */
+.soulText {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-2);
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-bottom: var(--space-8);
+  line-height: 22px;
+  max-width: 440px;
+}
+
+/* ===============================================
+   LOOKUP CARD
+   =============================================== */
+.lookupCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.passWrap { position: relative; }
+
+.passToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-low);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast);
+}
+
+.passToggle:hover { color: var(--text-mid); }
+
+.trackBtn {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+/* ===============================================
+   RESULT HEADER
+   =============================================== */
+.resultHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  animation: fadeIn 0.4s ease;
+}
+
+.resultId {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-high);
+  letter-spacing: 0.02em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================================
+   DETAIL CARD
+   =============================================== */
+.detailCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+  animation: fadeIn 0.5s ease;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.detailRow:last-child { border-bottom: none; }
+
+.detailLabel {
+  font-size: 13px;
+  color: var(--text-low);
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 13px;
+  color: var(--text-high);
+  text-align: right;
+}
+
+/* ===============================================
+   SECTION TITLE
+   =============================================== */
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+/* ===============================================
+   TIMELINE
+   =============================================== */
+.timeline {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: var(--space-8);
+  padding-bottom: var(--space-5);
+  animation: fadeIn 0.4s ease both;
+}
+
+.timelineItem:last-child { padding-bottom: 0; }
+
+.timelineDot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--canvas);
+  z-index: 1;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: 0;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.timelineStatus {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-high);
+  line-height: 20px;
+}
+
+.timelineNote {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+  margin-top: var(--space-1);
+}
+
+.timelineDate {
+  font-size: 11px;
+  color: var(--text-low);
+  font-family: var(--font-mono);
+  margin-top: var(--space-1);
+  letter-spacing: 0.02em;
+}
+
+/* ===============================================
+   NOTES
+   =============================================== */
+.noteCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+  box-shadow: var(--specular);
+}
+
+.noteContent {
+  font-size: 14px;
+  color: var(--text-high);
+  line-height: 22px;
+}
+
+.noteDate {
+  font-size: 11px;
+  color: var(--text-low);
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+}
+
+/* ===============================================
+   MESSAGES
+   =============================================== */
+.messageThread {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: var(--space-1);
+}
+
+.noMessages {
+  font-size: 13px;
+  color: var(--text-low);
+  font-style: italic;
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+.messageBubble {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  max-width: 85%;
+  animation: fadeIn 0.3s ease;
+}
+
+.messageReporter {
+  background: var(--primary-muted);
+  border: 1px solid rgba(91, 154, 139, 0.12);
+  align-self: flex-end;
+}
+
+.messageAdmin {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  align-self: flex-start;
+}
+
+.messageSender {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-1);
+}
+
+.messageContent {
+  font-size: 14px;
+  color: var(--text-high);
+  line-height: 22px;
+}
+
+.messageTime {
+  font-size: 10px;
+  color: var(--text-low);
+  font-family: var(--font-mono);
+  margin-top: var(--space-1);
+}
+
+.messageInput { margin-top: var(--space-2); }
+.sendBtn { margin-top: var(--space-2); }
+
+.archivedNotice {
+  padding: var(--space-4);
+  border-top: 1px solid var(--hairline);
+  margin-top: var(--space-4);
+}
+
+.archivedNotice p {
+  font-size: 13px;
+  color: var(--text-low);
+  font-style: italic;
+  text-align: center;
+}
+
+.backBtn { margin-top: var(--space-8); }
+
+/* ===============================================
+   MOBILE
+   =============================================== */
+@media (max-width: 767px) {
+  .page { padding-top: calc(var(--navbar-height) + var(--space-6)); }
+  .messageBubble { max-width: 92%; }
+  .messageThread { max-height: 300px; }
+}

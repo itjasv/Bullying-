@@ -1,0 +1,24 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/auto-archive",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/purge-evidence",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/cleanup",
+      "schedule": "0 3 * * 0"
+    },
+    {
+      "path": "/api/cron/log-rotation",
+      "schedule": "0 4 1 * *"
+    },
+    {
+      "path": "/api/cron/daily-digest",
+      "schedule": "0 6 * * *"
+    }
+  ]
+}

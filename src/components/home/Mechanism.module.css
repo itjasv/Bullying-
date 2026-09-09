@@ -1,0 +1,124 @@
+.section {
+  padding: var(--space-20) 0;
+  background: var(--surface-1);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.header {
+  max-width: var(--max-width-narrow);
+  margin-bottom: var(--space-12);
+}
+
+.heading {
+  margin-bottom: var(--space-3);
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 24px;
+}
+
+/* Two-column layout on desktop */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: flex-start;
+}
+
+.steps {
+  /* no max-width, fills column */
+}
+
+.step {
+  display: flex;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+}
+
+.stepActive {
+  background: var(--surface-2);
+  border-color: var(--primary);
+  box-shadow: var(--specular);
+}
+
+.stepMarker {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-3);
+  border-radius: var(--radius-sm);
+  margin-top: 2px;
+}
+
+.stepActive .stepMarker {
+  background: var(--primary-muted);
+}
+
+.stepNum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-low);
+  line-height: 20px;
+}
+
+.stepActive .stepNum {
+  color: var(--primary);
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepTitle {
+  margin-bottom: var(--space-2);
+}
+
+.stepDesc {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 20px;
+}
+
+.system {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--primary);
+}
+
+.connector {
+  width: 1px;
+  height: 20px;
+  background: var(--hairline);
+  margin-left: 36px;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .step {
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+}

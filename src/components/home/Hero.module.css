@@ -1,0 +1,108 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--navbar-height) + var(--space-20)) 0 var(--space-20);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.content { max-width: 480px; }
+.headline { margin-bottom: var(--space-6); }
+
+.subline {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 24px;
+  margin-bottom: var(--space-8);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* --- Scattered reassurance notes (desktop) --- */
+.reassurance {
+  position: relative;
+  height: 460px;
+}
+
+.note {
+  position: absolute;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-mid);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+}
+
+.note1 { top: 0; left: 30px; transform: rotate(-2deg); }
+.note2 { top: 55px; right: 0; transform: rotate(1.5deg); }
+.note3 { top: 120px; left: 0; transform: rotate(1deg); }
+.note4 { top: 185px; right: 10px; transform: rotate(-2.5deg); }
+.note5 { top: 250px; left: 50px; transform: rotate(2deg); }
+.note6 { top: 310px; right: 30px; transform: rotate(-1.5deg); }
+.note7 { top: 370px; left: 10px; transform: rotate(1.5deg); }
+.note8 { top: 420px; right: 50px; transform: rotate(-1deg); }
+
+.noteHighlight {
+  top: 130px;
+  right: 20px;
+  transform: rotate(-1deg);
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-muted);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* --- Mobile: keep scattered/elevated feel, not flat --- */
+@media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--navbar-height) + var(--space-12));
+    padding-bottom: var(--space-12);
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .reassurance {
+    position: relative;
+    height: 360px;
+  }
+
+  .note {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  /* Reposition for smaller screen but keep scattered */
+  .note1 { top: 0; left: 5px; transform: rotate(-2deg); }
+  .note2 { top: 40px; right: 0; left: auto; transform: rotate(1.5deg); }
+  .note3 { top: 85px; left: 20px; right: auto; transform: rotate(1deg); }
+  .note4 { top: 125px; right: 5px; left: auto; transform: rotate(-2deg); }
+  .note5 { top: 170px; left: 0; right: auto; transform: rotate(1.5deg); }
+  .noteHighlight { top: 90px; right: 10px; left: auto; font-size: 13px; }
+  .note6 { top: 215px; right: 15px; left: auto; transform: rotate(-1deg); }
+  .note7 { top: 260px; left: 10px; right: auto; transform: rotate(2deg); }
+  .note8 { top: 305px; right: 0; left: auto; transform: rotate(-1.5deg); }
+}

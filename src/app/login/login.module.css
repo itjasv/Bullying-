@@ -1,0 +1,131 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--navbar-height);
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 0 var(--space-6);
+}
+
+.card {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Google Button ---- */
+.googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-high);
+  cursor: pointer;
+  transition: background var(--duration-fast), border-color var(--duration-fast), transform var(--duration-fast);
+}
+
+.googleBtn:hover {
+  background: var(--surface-1);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.googleBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.googleIcon {
+  flex-shrink: 0;
+}
+
+/* ---- Divider ---- */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: var(--space-6) 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+.divider span {
+  padding: 0 var(--space-3);
+  font-size: 12px;
+  color: var(--text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---- Anon note ---- */
+.anonNote {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+  margin-bottom: var(--space-4);
+}
+
+.links {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+/* ---- Error ---- */
+.errorBox {
+  background: var(--danger-muted);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.errorBox p {
+  font-size: 13px;
+  color: var(--danger);
+  line-height: 20px;
+}

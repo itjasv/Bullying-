@@ -1,0 +1,125 @@
+.section {
+  padding: var(--space-24) 0;
+  border-top: 1px solid var(--hairline);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* =============================================
+   Whisper grid — 3x2
+   ============================================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.whisper {
+  position: relative;
+  padding: var(--space-5);
+  padding-top: var(--space-6);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.w0.revealed { transform: rotate(-1.2deg); }
+.w1.revealed { transform: rotate(0.8deg); }
+.w2.revealed { transform: rotate(-0.6deg); }
+.w3.revealed { transform: rotate(1.4deg); }
+.w4.revealed { transform: rotate(-0.9deg); }
+.w5.revealed { transform: rotate(0.5deg); }
+
+/* Pin */
+.pin {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.5;
+}
+
+/* Typewriter */
+.text {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+  font-style: italic;
+  min-height: 44px;
+}
+
+.cursor {
+  display: inline;
+  color: var(--primary);
+  font-style: normal;
+  font-weight: 300;
+  animation: blink 0.6s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Center element */
+.centerElement {
+  text-align: center;
+  margin-top: var(--space-12);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.centerVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.centerText {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  line-height: 1;
+  display: inline-flex;
+}
+
+.waveLetter {
+  display: inline-block;
+  animation: waveFloat 3s ease-in-out infinite;
+}
+
+@keyframes waveFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .section { padding: var(--space-16) 0; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .centerText { font-size: 28px; }
+}

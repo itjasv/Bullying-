@@ -1,0 +1,133 @@
+.rangePicker {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.rangeBtn {
+  padding: var(--space-1) var(--space-3);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--text-mid);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.rangeBtn:hover { background: var(--surface-3); }
+
+.rangeBtnActive {
+  background: var(--primary-muted) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* ---- Bar Chart ---- */
+.chartSection {
+  margin-bottom: var(--space-10);
+}
+
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 160px;
+  padding: var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+}
+
+.barCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 12px;
+}
+
+.bar {
+  width: 100%;
+  max-width: 24px;
+  background: var(--primary);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height 0.3s ease;
+}
+
+.barLabel {
+  font-size: 9px;
+  color: var(--text-low);
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+/* ---- Distributions ---- */
+.distRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.distCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.distList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.distItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.distLabel {
+  font-size: 12px;
+  color: var(--text-mid);
+  text-transform: capitalize;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.distBarWrap {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.distBar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.distCount {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-low);
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .distRow { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,162 @@
+.section {
+  padding: var(--space-20) 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.header {
+  max-width: 520px;
+  margin-bottom: var(--space-12);
+}
+
+.heading {
+  font-size: var(--text-headline);
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.sub {
+  font-size: var(--text-body);
+  color: var(--text-2);
+  line-height: 24px;
+}
+
+/* Bento grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.card {
+  background: var(--surface-0);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLarge {
+  grid-column: span 2;
+}
+
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-2);
+  margin-bottom: var(--space-4);
+}
+
+.cardTitle {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 24px;
+  margin-bottom: var(--space-2);
+}
+
+.cardDesc {
+  font-size: var(--text-body-sm);
+  color: var(--text-2);
+  line-height: 20px;
+}
+
+/* Visual elements inside large cards */
+.cardVisual {
+  margin-top: auto;
+  padding-top: var(--space-5);
+}
+
+.terminalLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  line-height: 20px;
+}
+
+.terminalLine:last-child {
+  border-bottom: none;
+}
+
+.termLabel {
+  color: var(--text-3);
+}
+
+.termValue {
+  color: var(--text-1);
+}
+
+.codeBlock {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  line-height: 20px;
+}
+
+.codeDim {
+  color: var(--text-3);
+}
+
+.codeAccent {
+  color: var(--accent-hover);
+}
+
+.inlineCode {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-hover);
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cardLarge {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardLarge {
+    grid-column: span 1;
+  }
+}

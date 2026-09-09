@@ -1,0 +1,146 @@
+.section {
+  padding: var(--space-16) 0;
+  border-top: 1px solid var(--hairline);
+  background: var(--surface-1);
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+/* --- Side trails --- */
+.trail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 160px;
+  justify-content: flex-end;
+}
+
+.trailWord {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-high);
+  letter-spacing: -0.01em;
+  line-height: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+/* --- Center stage --- */
+.center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maybe {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-low);
+  margin-bottom: var(--space-3);
+  line-height: 1;
+}
+
+.word {
+  font-size: clamp(26px, 5vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.wordFast {
+  color: var(--text-low);
+}
+
+.wordSlow {
+  color: var(--text-high);
+  animation: revealWord 0.5s ease;
+}
+
+@keyframes revealWord {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.underline {
+  width: 60px;
+  height: 2px;
+  background: var(--primary);
+  margin-top: var(--space-3);
+  border-radius: 1px;
+  animation: drawLine 0.6s ease forwards;
+  opacity: 0.5;
+}
+
+@keyframes drawLine {
+  0% { width: 0; opacity: 0; }
+  100% { width: 60px; opacity: 0.5; }
+}
+
+.follow {
+  font-size: 15px;
+  color: var(--text-low);
+  margin-top: var(--space-8);
+  line-height: 24px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.followVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Mobile: trails go below center as a row --- */
+@media (max-width: 767px) {
+  .section {
+    padding: var(--space-16) 0;
+    height: 400px;
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .trail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: auto;
+  }
+
+  .trailWord {
+    font-size: 11px;
+  }
+
+  /* Reorder: trail1 above center, trail2 below */
+  .trail:first-child { order: -1; }
+  .center { order: 0; }
+  .trail:last-child { order: 1; }
+}

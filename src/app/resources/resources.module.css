@@ -1,0 +1,262 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+  padding-bottom: var(--space-16);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 24px;
+  max-width: 560px;
+  margin-bottom: var(--space-12);
+}
+
+/* ---- Sections ---- */
+.section {
+  margin-bottom: var(--space-20);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-bottom: var(--space-8);
+  line-height: 22px;
+}
+
+/* ---- Helplines ---- */
+.helplineGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.helplineCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.helplineName {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.helplineNumber {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.02em;
+}
+
+.helplineDesc {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+  margin-bottom: var(--space-2);
+}
+
+.helplineHours {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-low);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Types of bullying ---- */
+.typesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.typeCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.typeName {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.typeDesc {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+}
+
+/* ---- Bystander Tips ---- */
+.tipsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+}
+
+.tipNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.6;
+}
+
+.tip p {
+  font-size: 14px;
+  color: var(--text-high);
+  line-height: 22px;
+}
+
+/* ---- FAQ ---- */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faqItem {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faqQ {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-high);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.faqQ:hover { background: var(--surface-3); }
+.faqQOpen { background: var(--surface-3); }
+
+.faqChevron {
+  font-size: 18px;
+  color: var(--text-low);
+  flex-shrink: 0;
+  margin-left: var(--space-4);
+}
+
+.faqA {
+  padding: 0 var(--space-5) var(--space-4);
+  animation: faqOpen 0.2s ease;
+}
+
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faqA p {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+}
+
+/* ---- Organizations ---- */
+.orgGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.orgCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  text-decoration: none;
+  transition: border-color var(--duration-fast), transform var(--duration-fast);
+}
+
+.orgCard:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.orgName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-high);
+  margin-bottom: var(--space-1);
+}
+
+.orgDesc {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+  margin-bottom: var(--space-3);
+}
+
+.orgLink {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+  .heading { font-size: 28px; }
+  .helplineGrid { grid-template-columns: 1fr; }
+  .typesGrid { grid-template-columns: 1fr; }
+  .orgGrid { grid-template-columns: 1fr; }
+}

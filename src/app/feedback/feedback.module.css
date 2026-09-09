@@ -1,0 +1,134 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+  padding-bottom: var(--space-16);
+}
+
+.container {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 24px;
+  margin-bottom: var(--space-8);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ---- Stars ---- */
+.ratingSection {
+  margin-bottom: var(--space-4);
+}
+
+.stars {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.star {
+  font-size: 32px;
+  color: var(--surface-3);
+  cursor: pointer;
+  transition: color var(--duration-fast), transform var(--duration-fast);
+  line-height: 1;
+}
+
+.star:hover { transform: scale(1.15); }
+
+.starFilled {
+  color: var(--primary) !important;
+}
+
+.ratingLabel {
+  font-size: 13px;
+  color: var(--primary);
+  margin-top: var(--space-2);
+  font-weight: 500;
+}
+
+/* ---- Tags ---- */
+.tagGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.tag {
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-mid);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.tag:hover {
+  border-color: var(--border-strong);
+}
+
+.tagActive {
+  border-color: var(--primary) !important;
+  background: var(--primary-muted) !important;
+  color: var(--primary) !important;
+}
+
+/* ---- Success ---- */
+.successCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--specular);
+  border-radius: var(--radius-md);
+  padding: var(--space-10);
+  text-align: center;
+}
+
+.successSoul {
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.6;
+  margin-bottom: var(--space-4);
+}
+
+.successText {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 22px;
+  margin-bottom: var(--space-6);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+  .heading { font-size: 28px; }
+  .star { font-size: 28px; }
+}

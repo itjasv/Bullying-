@@ -1,0 +1,237 @@
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+  padding-bottom: var(--space-16);
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.soul {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.45;
+  margin-bottom: var(--space-1);
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-8);
+}
+
+.loadingText {
+  font-size: 14px;
+  color: var(--text-low);
+}
+
+/* ---- Profile Card ---- */
+.profileCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.profileRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--hairline);
+  font-size: 14px;
+  color: var(--text-high);
+}
+
+.profileRow:last-child { border-bottom: none; }
+
+.profileLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Report History ---- */
+.historySection {
+  margin-top: var(--space-10);
+}
+
+.historyTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.historyDesc {
+  font-size: 13px;
+  color: var(--text-low);
+  margin-bottom: var(--space-6);
+  line-height: 20px;
+}
+
+.emptyHistory {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.emptyText {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-bottom: var(--space-2);
+}
+
+.emptyHint {
+  font-size: 12px;
+  color: var(--text-low);
+  line-height: 18px;
+}
+
+.reportList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.reportCard {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.reportHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.reportId {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.reportStatus {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border: 1px solid;
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.reportMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+  color: var(--text-low);
+}
+
+.reportDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-low);
+}
+
+.reportUpdated {
+  font-size: 11px;
+  color: var(--text-low);
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+}
+
+/* ---- Actions ---- */
+.actions {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ---- Withdraw ---- */
+.withdrawBtn {
+  margin-top: var(--space-3);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--warning);
+  background: transparent;
+  border: 1px solid var(--warning);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.withdrawBtn:hover {
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.withdrawBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- Danger Zone ---- */
+.dangerZone {
+  margin-top: var(--space-12);
+  padding: var(--space-6);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.dangerTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--danger);
+  margin-bottom: var(--space-2);
+}
+
+.dangerDesc {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 20px;
+  margin-bottom: var(--space-4);
+}
+
+.dangerBtn {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--danger);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: opacity var(--duration-fast);
+}
+
+.dangerBtn:hover { opacity: 0.85; }
+.dangerBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.dangerConfirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.dangerWarn {
+  font-size: 13px;
+  color: var(--danger);
+  font-weight: 500;
+}
