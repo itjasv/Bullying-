@@ -91,7 +91,7 @@ export default function UserDashboard() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `safevoice-data-export-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `ragraksha-data-export-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };

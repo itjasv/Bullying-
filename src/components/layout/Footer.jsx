@@ -15,9 +15,9 @@ const INFO_LINKS = [
 ];
 
 const SOCIAL = [
-  { href: "https://instagram.com/safevoice.in", label: "Instagram", icon: "IG" },
-  { href: "https://x.com/safevoice_in", label: "X (Twitter)", icon: "X" },
-  { href: "https://linkedin.com/company/safevoice", label: "LinkedIn", icon: "LI" },
+  { href: "https://instagram.com/ragraksha", label: "Instagram", icon: "IG" },
+  { href: "https://x.com/ragraksha", label: "X (Twitter)", icon: "X" },
+  { href: "https://linkedin.com/company/ragraksha", label: "LinkedIn", icon: "LI" },
 ];
 
 export default function Footer() {
@@ -27,9 +27,9 @@ export default function Footer() {
         <div className={styles.top}>
           {/* Brand */}
           <div className={styles.brandCol}>
-            <span className={styles.brand}>SafeVoice</span>
+            <span className={styles.brand}>RagRaksha</span>
             <p className={styles.tagline}>
-              Anonymous reporting. Real action. Zero judgment.
+              A safer tomorrow, together.
             </p>
             <div className={styles.socials}>
               {SOCIAL.map((s) => (
@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className={styles.bottom}>
-          <span className={styles.copy}>&copy; {new Date().getFullYear()} SafeVoice. All rights reserved.</span>
+          <span className={styles.copy}>&copy; {new Date().getFullYear()} RagRaksha. All rights reserved.</span>
           <span className={styles.legal}>
             This platform does not store IP addresses or browser fingerprints.
           </span>

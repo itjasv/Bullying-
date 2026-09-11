@@ -25,7 +25,7 @@ export default function AdminLayout({ children }) {
       <aside className={`${styles.sidebar} ${collapsed ? styles.sidebarCollapsed : ""}`}>
         <div className={styles.sidebarHeader}>
           <Link href="/admin" className={styles.brand}>
-            {collapsed ? "SV" : "SafeVoice"}
+            {collapsed ? "RR" : "RagRaksha"}
           </Link>
           <button
             className={styles.collapseBtn}

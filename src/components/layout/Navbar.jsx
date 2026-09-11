@@ -56,7 +56,7 @@ export default function Navbar() {
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
         <div className={styles.inner}>
           <Link href="/" className={styles.logo}>
-            SafeVoice
+            RagRaksha
           </Link>
 
           <div className={styles.links}>

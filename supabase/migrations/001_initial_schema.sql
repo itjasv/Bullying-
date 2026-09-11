@@ -1,5 +1,5 @@
 -- ============================================================
--- SafeVoice: Complete Database Schema
+-- RagRaksha: Complete Database Schema
 -- Run this in Supabase SQL Editor
 -- ============================================================
 

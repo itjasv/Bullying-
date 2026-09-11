@@ -4,7 +4,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const FROM = "SafeVoice <notifications@safevoice.in>";
+const FROM = "RagRaksha <notifications@ragraksha.in>";
 
 /**
  * Send email notification. Fails silently if Resend is not configured.
@@ -52,7 +52,7 @@ export async function notifyNewReport(reportId, type, severity) {
   `;
 
   for (const email of adminEmails) {
-    await send(email, `[SafeVoice] New ${severity} report: ${reportId}`, html);
+    await send(email, `[RagRaksha] New ${severity} report: ${reportId}`, html);
   }
 }
 
@@ -83,7 +83,7 @@ export async function notifyStatusChange(reportId, oldStatus, newStatus, changed
   `;
 
   for (const email of adminEmails) {
-    await send(email, `[SafeVoice] Status update: ${reportId}`, html);
+    await send(email, `[RagRaksha] Status update: ${reportId}`, html);
   }
 }
 
@@ -106,12 +106,12 @@ export async function notifyDailyDigest(stats) {
         <tr><td style="padding: 6px 0;">Resolved (24h)</td><td style="font-family: monospace; color: #34d399;">${stats.resolved}</td></tr>
       </table>
       <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.4);">
-        SafeVoice Admin Panel
+        RagRaksha Admin Panel
       </p>
     </div>
   `;
 
   for (const email of adminEmails) {
-    await send(email, `[SafeVoice] Daily Digest - ${new Date().toLocaleDateString("en-IN")}`, html);
+    await send(email, `[RagRaksha] Daily Digest - ${new Date().toLocaleDateString("en-IN")}`, html);
   }
 }

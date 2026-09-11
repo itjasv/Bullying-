@@ -72,7 +72,7 @@ export default function PromisePage() {
             <p className={styles.closingSoul}>this is not a product.</p>
             <p className={styles.closingSoul}>this is a promise.</p>
             <div className={styles.closingLine} />
-            <p className={styles.closingNote}>The SafeVoice Team</p>
+            <p className={styles.closingNote}>The RagRaksha Team</p>
           </div>
         </div>
       </div>

@@ -23,24 +23,33 @@ const caveat = Caveat({
 
 export const metadata = {
   title: {
-    default: "SafeVoice | Anonymous Bullying Reports",
-    template: "%s | SafeVoice",
+    default: "RagRaksha | A Safer Tomorrow, Together",
+    template: "%s | RagRaksha",
   },
   description:
-    "Submit anonymous bullying reports. Track case status with a private passphrase. No account required.",
-  keywords: ["bullying", "report", "anonymous", "safe", "school", "india", "harassment", "cyberbullying"],
+    "RagRaksha - Anonymous bullying reporting platform. Submit reports, track case status with a private passphrase. A safer tomorrow, together.",
+  keywords: ["bullying", "report", "anonymous", "ragraksha", "school", "india", "harassment", "cyberbullying", "safe"],
+  manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
+  themeColor: "#0E1011",
   openGraph: {
-    title: "SafeVoice | Anonymous Bullying Reports",
+    title: "RagRaksha | A Safer Tomorrow, Together",
     description:
-      "Submit anonymous bullying reports. Track case status with a private passphrase.",
+      "Anonymous bullying reporting platform. Submit reports, track case status. A safer tomorrow, together.",
     type: "website",
     locale: "en_IN",
-    siteName: "SafeVoice",
+    siteName: "RagRaksha",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SafeVoice | Anonymous Bullying Reports",
-    description: "Submit anonymous bullying reports. Track case status with a private passphrase.",
+    title: "RagRaksha | A Safer Tomorrow, Together",
+    description: "Anonymous bullying reporting platform. A safer tomorrow, together.",
   },
   robots: { index: true, follow: true },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),

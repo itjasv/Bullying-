@@ -3,8 +3,8 @@ import Footer from "@/components/layout/Footer";
 import styles from "./about.module.css";
 
 export const metadata = {
-  title: "About SafeVoice",
-  description: "Learn about SafeVoice, our mission to end bullying through anonymous reporting, and the team behind the platform.",
+  title: "About RagRaksha",
+  description: "Learn about RagRaksha, our mission to end bullying through anonymous reporting, and the team behind the platform.",
 };
 
 const TEAM = [
@@ -21,11 +21,11 @@ export default function AboutPage() {
       <div className={styles.page}>
         <div className={styles.container}>
           <p className={styles.soul}>why we built this</p>
-          <h1 className={styles.heading}>About SafeVoice</h1>
+          <h1 className={styles.heading}>About RagRaksha</h1>
 
           <div className={styles.mission}>
             <p className={styles.missionText}>
-              SafeVoice was born from a simple truth: too many students suffer in silence because they have nowhere safe to speak.
+              RagRaksha was born from a simple truth: too many students suffer in silence because they have nowhere safe to speak.
             </p>
             <p className={styles.missionBody}>
               We built this platform to give every student a way to report bullying without fear. No names. No judgment. No risk of retaliation. Just a secure channel between someone who needs help and someone who can provide it.
