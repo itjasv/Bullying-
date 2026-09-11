@@ -157,10 +157,31 @@ export default function ReportPage() {
         }),
       });
       const data = await res.json();
-      if (res.ok) { setReportId(data.report_id); setSubmitted(true); }
-      else { setErrors({ submit: data.error || "Submission failed" }); }
-    } catch { setErrors({ submit: "Network error. Please try again." }); }
-    finally { setSubmitting(false); }
+      if (res.ok) {
+        // Upload evidence files if attached
+        if (files.length > 0 && data.id) {
+          try {
+            const formData = new FormData();
+            formData.append("report_id", data.id);
+            files.forEach((f) => formData.append("files", f));
+            await fetch("/api/reports/evidence", {
+              method: "POST",
+              body: formData,
+            });
+          } catch (uploadErr) {
+            console.error("Evidence upload warning:", uploadErr);
+          }
+        }
+        setReportId(data.report_id);
+        setSubmitted(true);
+      } else {
+        setErrors({ submit: data.error || "Submission failed" });
+      }
+    } catch {
+      setErrors({ submit: "Network error. Please try again." });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {

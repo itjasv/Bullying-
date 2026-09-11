@@ -72,11 +72,11 @@
   font-size: 15px;
 }
 
-/* --- Mobile: keep scattered/elevated feel, not flat --- */
+/* --- Mobile: keep scattered/elevated feel, never overlap --- */
 @media (max-width: 767px) {
   .hero {
     min-height: auto;
-    padding-top: calc(var(--navbar-height) + var(--space-12));
+    padding-top: calc(var(--navbar-height) + var(--space-8));
     padding-bottom: var(--space-12);
   }
 
@@ -85,24 +85,56 @@
     gap: var(--space-8);
   }
 
+  .content {
+    max-width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
   .reassurance {
     position: relative;
-    height: 360px;
+    height: 470px;
+    width: 100%;
+    margin-top: var(--space-4);
   }
 
   .note {
     font-size: 12px;
     padding: 8px 14px;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 85%;
+    line-height: 18px;
   }
 
-  /* Reposition for smaller screen but keep scattered */
-  .note1 { top: 0; left: 5px; transform: rotate(-2deg); }
-  .note2 { top: 40px; right: 0; left: auto; transform: rotate(1.5deg); }
-  .note3 { top: 85px; left: 20px; right: auto; transform: rotate(1deg); }
-  .note4 { top: 125px; right: 5px; left: auto; transform: rotate(-2deg); }
-  .note5 { top: 170px; left: 0; right: auto; transform: rotate(1.5deg); }
-  .noteHighlight { top: 90px; right: 10px; left: auto; font-size: 13px; }
-  .note6 { top: 215px; right: 15px; left: auto; transform: rotate(-1deg); }
-  .note7 { top: 260px; left: 10px; right: auto; transform: rotate(2deg); }
-  .note8 { top: 305px; right: 0; left: auto; transform: rotate(-1.5deg); }
+  /* Non-overlapping staggered tiers (at least 50px vertical separation) */
+  .note1 { top: 0; left: 4px; right: auto; transform: rotate(-2deg); }
+  .note2 { top: 50px; right: 4px; left: auto; transform: rotate(1.5deg); }
+  .note3 { top: 102px; left: 4px; right: auto; transform: rotate(1deg); }
+  .noteHighlight {
+    top: 156px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) rotate(-0.5deg);
+    font-size: 13px;
+    max-width: 90%;
+    text-align: center;
+  }
+  .note4 { top: 212px; right: 4px; left: auto; transform: rotate(-2deg); }
+  .note5 { top: 262px; left: 4px; right: auto; transform: rotate(1.5deg); }
+  .note6 { top: 312px; right: 4px; left: auto; transform: rotate(-1deg); }
+  .note7 { top: 362px; left: 4px; right: auto; transform: rotate(2deg); }
+  .note8 { top: 412px; right: 4px; left: auto; transform: rotate(-1.5deg); }
 }

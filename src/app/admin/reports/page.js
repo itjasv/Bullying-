@@ -18,6 +18,9 @@ export default function AdminReports() {
   const [updating, setUpdating] = useState(false);
   const [page, setPage] = useState(0);
 
+  const [evidence, setEvidence] = useState([]);
+  const [evidenceLoading, setEvidenceLoading] = useState(false);
+
   async function fetchReports() {
     setLoading(true);
     const supabase = createClient();
@@ -39,6 +42,26 @@ export default function AdminReports() {
   }
 
   useEffect(() => { fetchReports(); }, [page, filters.status, filters.severity, filters.type]);
+
+  const openReport = async (r) => {
+    setSelected(r);
+    setNewStatus("");
+    setStatusNote("");
+    setEvidence([]);
+    setEvidenceLoading(true);
+
+    try {
+      const res = await fetch(`/api/admin/reports/${r.id}/evidence`);
+      if (res.ok) {
+        const data = await res.json();
+        setEvidence(data.evidence || []);
+      }
+    } catch (err) {
+      console.error("Failed to load evidence:", err);
+    } finally {
+      setEvidenceLoading(false);
+    }
+  };
 
   const handleStatusUpdate = async () => {
     if (!selected || !newStatus || !statusNote.trim()) return;
@@ -139,7 +162,7 @@ export default function AdminReports() {
                   <td>{r.is_flagged ? "!" : ""}</td>
                   <td className={styles.dateCell}>{new Date(r.created_at).toLocaleDateString()}</td>
                   <td>
-                    <button className="btn btn-ghost btn-sm" onClick={() => { setSelected(r); setNewStatus(""); setStatusNote(""); }}>
+                    <button className="btn btn-ghost btn-sm" onClick={() => openReport(r)}>
                       View
                     </button>
                   </td>
@@ -187,6 +210,83 @@ export default function AdminReports() {
                 <p className={rstyles.descText}>{selected.involved_parties}</p>
               </div>
             )}
+
+            {/* Evidence Section */}
+            <div className={rstyles.evidenceSection}>
+              <div className={rstyles.evidenceHeader}>
+                <p className={rstyles.detailLabel}>Attached Evidence</p>
+                <span className={rstyles.evidenceCount}>
+                  {evidenceLoading ? "Loading..." : `${evidence.length} file${evidence.length === 1 ? "" : "s"}`}
+                </span>
+              </div>
+
+              {evidenceLoading ? (
+                <div className={rstyles.evidenceLoading}>
+                  <span>Fetching evidence files securely...</span>
+                </div>
+              ) : evidence.length === 0 ? (
+                <div className={rstyles.noEvidence}>
+                  <p>No evidence files were attached to this report.</p>
+                </div>
+              ) : (
+                <div className={rstyles.evidenceGrid}>
+                  {evidence.map((item) => (
+                    <div key={item.id} className={rstyles.evidenceCard}>
+                      <div className={rstyles.evidenceMediaWrap}>
+                        {item.purged ? (
+                          <div className={rstyles.purgedNotice}>
+                            <span>File purged per retention policy</span>
+                          </div>
+                        ) : item.media_type === "video" ? (
+                          <video
+                            src={item.signed_url}
+                            controls
+                            className={rstyles.evidenceVideo}
+                            preload="metadata"
+                          />
+                        ) : item.media_type === "audio" ? (
+                          <div className={rstyles.audioWrapper}>
+                            <audio src={item.signed_url} controls className={rstyles.evidenceAudio} />
+                          </div>
+                        ) : (
+                          <a href={item.signed_url} target="_blank" rel="noopener noreferrer" className={rstyles.imageLink}>
+                            <img
+                              src={item.signed_url}
+                              alt={item.original_file_name || "Evidence"}
+                              className={rstyles.evidenceImage}
+                              loading="lazy"
+                            />
+                            <span className={rstyles.imageOverlay}>Open Full Image ↗</span>
+                          </a>
+                        )}
+                      </div>
+                      <div className={rstyles.evidenceInfo}>
+                        <span className={rstyles.evidenceName} title={item.original_file_name || item.file_name}>
+                          {item.original_file_name || item.file_name}
+                        </span>
+                        <div className={rstyles.evidenceMeta}>
+                          <span className={rstyles.evidenceBadge}>{item.media_type.toUpperCase()}</span>
+                          <span className={rstyles.evidenceSize}>
+                            {(item.file_size_bytes / (1024 * 1024)).toFixed(2)} MB
+                          </span>
+                          {item.signed_url && (
+                            <a
+                              href={item.signed_url}
+                              download={item.original_file_name || "evidence"}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={rstyles.downloadBtn}
+                            >
+                              Download
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Status Update */}
             {STATUS_TRANSITIONS[selected.status]?.length > 0 && (

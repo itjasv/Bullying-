@@ -111,6 +111,10 @@
   border-radius: var(--radius-sm);
   padding: var(--space-4);
   margin-bottom: var(--space-4);
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .descText {
@@ -118,6 +122,185 @@
   color: var(--text-mid);
   line-height: 22px;
   white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Evidence Section ---- */
+.evidenceSection {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.evidenceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.evidenceCount {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--primary-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.evidenceLoading,
+.noEvidence {
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--text-low);
+  font-size: 13px;
+  background: var(--surface-1);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--hairline);
+}
+
+.evidenceGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.evidenceCard {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.evidenceMediaWrap {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  max-height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+
+.imageLink {
+  display: block;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.evidenceImage {
+  max-width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transition: transform var(--duration-fast);
+}
+
+.imageLink:hover .evidenceImage {
+  transform: scale(1.02);
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--text-high);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(4px);
+}
+
+.evidenceVideo {
+  width: 100%;
+  max-height: 360px;
+  background: #000;
+  display: block;
+}
+
+.audioWrapper {
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--surface-2);
+  display: flex;
+  justify-content: center;
+}
+
+.evidenceAudio {
+  width: 100%;
+  max-width: 480px;
+}
+
+.purgedNotice {
+  padding: var(--space-6);
+  color: var(--warning);
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+}
+
+.evidenceInfo {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.evidenceName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-high);
+  word-break: break-all;
+}
+
+.evidenceMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 12px;
+}
+
+.evidenceBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--primary-muted);
+  color: var(--primary);
+  border: 1px solid rgba(91, 154, 139, 0.3);
+}
+
+.evidenceSize {
+  color: var(--text-low);
+}
+
+.downloadBtn {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary);
+  transition: all var(--duration-fast);
+}
+
+.downloadBtn:hover {
+  background: var(--primary-muted);
 }
 
 /* ---- Status Update ---- */
@@ -131,6 +314,14 @@
 }
 
 @media (max-width: 767px) {
+  .overlay {
+    padding: var(--space-2);
+  }
+  .modal {
+    padding: var(--space-4);
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
   .filters { flex-direction: column; }
   .filters .input, .filters select { max-width: 100%; }
   .detailGrid { grid-template-columns: 1fr; }
