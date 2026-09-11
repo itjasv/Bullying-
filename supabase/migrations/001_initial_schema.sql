@@ -310,8 +310,8 @@ BEGIN
     'lohanutkarsh289@gmail.com',
     'stejasvi817@gmail.com'
   ) THEN
-    -- Poorvi and Tejasvi are super admins
-    IF user_email IN ('aggarwalpoorvi05@gmail.com', 'stejasvi817@gmail.com') THEN
+    -- Shreya and Tejasvi are super admins
+    IF user_email IN ('shreya22012006@gmail.com', 'stejasvi817@gmail.com') THEN
       user_role := 'super_admin';
     ELSE
       user_role := 'admin';

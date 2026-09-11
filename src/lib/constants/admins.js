@@ -13,7 +13,7 @@ export const ADMIN_EMAILS = [
 ];
 
 export const SUPER_ADMIN_EMAILS = [
-  "aggarwalpoorvi05@gmail.com",
+  "shreya22012006@gmail.com",
   "stejasvi817@gmail.com",
 ];
 

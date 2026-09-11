@@ -6,8 +6,8 @@ import Footer from "@/components/layout/Footer";
 import styles from "./contact.module.css";
 
 const TEAM = [
-  { name: "Poorvi Aggarwal", role: "Super Admin" },
-  { name: "Shreya Aggarwal", role: "Admin" },
+  { name: "Shreya Aggarwal", role: "Super Admin" },
+  { name: "Poorvi Aggarwal", role: "Admin" },
   { name: "Utkarsh Lohan", role: "Admin" },
   { name: "Rituraj Sharma", role: "Admin" },
 ];

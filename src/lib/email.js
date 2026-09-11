@@ -92,7 +92,7 @@ export async function notifyStatusChange(reportId, oldStatus, newStatus, changed
  */
 export async function notifyDailyDigest(stats) {
   const adminEmails = [
-    "aggarwalpoorvi05@gmail.com",
+    "shreya22012006@gmail.com",
     "stejasvi817@gmail.com",
   ];
 

@@ -5,23 +5,28 @@
 -- 
 -- IMPORTANT: Run this AFTER the admin users have logged in
 -- at least once via Google OAuth so their auth.users row exists.
--- This script promotes existing users to admin/super_admin.
+-- The handle_new_user() trigger auto-assigns roles on first login,
+-- so this script is only needed if you need to manually fix roles.
 -- ============================================================
 
--- Poorvi Aggarwal: Super Admin
--- UPDATE public.users SET role = 'super_admin' WHERE email = 'POORVI_EMAIL_HERE';
+-- Shreya Aggarwal: Super Admin (Project Lead)
+-- UPDATE public.users SET role = 'super_admin' WHERE email = 'shreya22012006@gmail.com';
 
--- Shreya Aggarwal: Admin
--- UPDATE public.users SET role = 'admin' WHERE email = 'SHREYA_EMAIL_HERE';
-
--- Utkarsh Lohan: Admin
--- UPDATE public.users SET role = 'admin' WHERE email = 'UTKARSH_EMAIL_HERE';
+-- Poorvi Aggarwal: Admin
+-- UPDATE public.users SET role = 'admin' WHERE email = 'aggarwalpoorvi05@gmail.com';
 
 -- Rituraj Sharma: Admin
--- UPDATE public.users SET role = 'admin' WHERE email = 'RITURAJ_EMAIL_HERE';
+-- UPDATE public.users SET role = 'admin' WHERE email = 'rituraj2004.sharma@gmail.com';
+
+-- Utkarsh Lohan: Admin
+-- UPDATE public.users SET role = 'admin' WHERE email = 'lohanutkarsh289@gmail.com';
+
+-- Tejasvi Sharma: Super Admin (Tester)
+-- UPDATE public.users SET role = 'super_admin' WHERE email = 'stejasvi817@gmail.com';
 
 -- ============================================================
--- NOTE: Uncomment and replace the email placeholders with
--- actual Google emails once the admins have signed up.
--- Run this in Supabase SQL Editor after first login.
+-- NOTE: The handle_new_user() trigger in 001_initial_schema.sql
+-- auto-assigns roles on first Google OAuth login. These UPDATE
+-- statements are commented out as a fallback only.
+-- Uncomment and run if roles need manual correction.
 -- ============================================================
