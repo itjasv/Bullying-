@@ -1,0 +1,35 @@
+name: Keep Alive & Anti-Sleep Ping
+
+on:
+  schedule:
+    # Runs every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
+    # Pings Supabase DB so the free tier never auto-pauses after 7 days of inactivity
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+
+jobs:
+  ping:
+    name: Ping Health & Touch DB
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /api/health
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          if [ -z "$URL" ]; then
+            echo "❌ Error: SITE_URL secret is not set in GitHub repository settings."
+            exit 1
+          fi
+          
+          # Strip trailing slash if present
+          URL="${URL%/}"
+          echo "🌐 Pinging $URL/api/health..."
+          
+          RESPONSE=$(curl -s -S --max-time 30 "$URL/api/health")
+          echo "Response: $RESPONSE"
+          
+          # Check if status contains ok
+          if echo "$RESPONSE" | grep -q '"status":"ok"'; then
+            echo "✅ Keep-alive successful: Supabase and Vercel are active."
+          else
+            echo "⚠️ Warning: Ping responded but status was not 'ok'."
+          fi

@@ -1,0 +1,79 @@
+name: Daily Maintenance & Digest
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC (11:30 AM IST)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual 1-click execution anytime from GitHub UI
+
+jobs:
+  maintenance:
+    name: Run Scheduled Tasks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Secrets
+        run: |
+          if [ -z "${{ secrets.SITE_URL }}" ]; then
+            echo "❌ Error: SITE_URL secret is not configured in GitHub Secrets."
+            exit 1
+          fi
+          if [ -z "${{ secrets.CRON_SECRET }}" ]; then
+            echo "❌ Error: CRON_SECRET secret is not configured in GitHub Secrets."
+            exit 1
+          fi
+          echo "✅ Secrets found."
+
+      - name: Run Auto-Archive (Daily)
+        continue-on-error: true
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          URL="${URL%/}"
+          echo "📦 Running auto-archive..."
+          RESPONSE=$(curl -s -S --max-time 60 -X POST "$URL/api/cron/auto-archive" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Result: $RESPONSE"
+
+      - name: Run Purge Evidence (Daily)
+        continue-on-error: true
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          URL="${URL%/}"
+          echo "🗑️ Running purge-evidence..."
+          RESPONSE=$(curl -s -S --max-time 60 -X POST "$URL/api/cron/purge-evidence" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Result: $RESPONSE"
+
+      - name: Run Cleanup (Weekly soft-deleted reports)
+        continue-on-error: true
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          URL="${URL%/}"
+          echo "🧹 Running cleanup..."
+          RESPONSE=$(curl -s -S --max-time 60 -X POST "$URL/api/cron/cleanup" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Result: $RESPONSE"
+
+      - name: Run Log Rotation (Monthly old logs)
+        continue-on-error: true
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          URL="${URL%/}"
+          echo "📜 Running log-rotation..."
+          RESPONSE=$(curl -s -S --max-time 60 -X POST "$URL/api/cron/log-rotation" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Result: $RESPONSE"
+
+      - name: Run Daily Digest (Email to Super Admins)
+        continue-on-error: true
+        run: |
+          URL="${{ secrets.SITE_URL }}"
+          URL="${URL%/}"
+          echo "📧 Running daily-digest..."
+          RESPONSE=$(curl -s -S --max-time 60 -X POST "$URL/api/cron/daily-digest" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Result: $RESPONSE"
