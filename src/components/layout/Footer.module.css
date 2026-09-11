@@ -122,6 +122,28 @@
   font-style: italic;
 }
 
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.legalLinks a {
+  color: var(--text-low);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.legalLinks a:hover {
+  color: var(--text-high);
+}
+
+.dot {
+  color: var(--text-low);
+  opacity: 0.4;
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   .top {

@@ -12,6 +12,8 @@ const INFO_LINKS = [
   { href: "/about", label: "About" },
   { href: "/promise", label: "Our Promise" },
   { href: "/contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
 ];
 
 const SOCIAL = [
@@ -75,6 +77,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className={styles.bottom}>
           <span className={styles.copy}>&copy; {new Date().getFullYear()} RagRaksha. All rights reserved.</span>
+          <span className={styles.legalLinks}>
+            <Link href="/privacy">Privacy</Link>
+            <span className={styles.dot}>&middot;</span>
+            <Link href="/terms">Terms</Link>
+          </span>
           <span className={styles.legal}>
             This platform does not store IP addresses or browser fingerprints.
           </span>

@@ -31,14 +31,20 @@
 }
 
 .logo {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text-high);
-  letter-spacing: -0.02em;
-  line-height: 24px;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  padding-bottom: 2px;
+  background: linear-gradient(135deg, var(--text-high) 40%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity var(--duration-fast) var(--ease);
 }
 
-.logo:hover { color: var(--text-high); }
+.logo:hover { opacity: 0.85; }
 
 .links {
   display: none;
