@@ -86,7 +86,7 @@ export default function BullyingWeb() {
       const cy = rect.height * 0.5;
 
       const isDark = resolvedTheme === "dark";
-      ctx.strokeStyle = isDark ? "rgba(91, 154, 139, 0.10)" : "rgba(91, 154, 139, 0.30)";
+      ctx.strokeStyle = isDark ? "rgba(91, 154, 139, 0.10)" : "rgba(91, 154, 139, 0.20)";
       ctx.lineWidth = 1;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
