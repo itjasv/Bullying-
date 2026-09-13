@@ -500,6 +500,47 @@
 
 .warningBox em { font-weight: 600; }
 
+.uploadingNotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border-focus);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-8);
+  color: var(--text-high);
+  font-size: 13px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--primary-muted);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.uploadSuccess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--success-muted);
+  border: 1px solid var(--success-muted);
+  color: var(--success);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-8);
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .successActions {
   display: flex;
   gap: var(--space-3);

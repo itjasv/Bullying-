@@ -38,9 +38,22 @@ export default function ReportPage() {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [uploadingFiles, setUploadingFiles] = useState(false);
   const [reportId, setReportId] = useState(null);
   const [errors, setErrors] = useState({});
   const [idemKey] = useState(() => generateIdempotencyKey());
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (uploadingFiles) {
+        e.preventDefault();
+        e.returnValue = "Evidence is still uploading. If you leave, it will be lost.";
+        return e.returnValue;
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [uploadingFiles]);
 
   const [form, setForm] = useState({
     type: "", severity: "", description: "", location: "",
@@ -77,6 +90,7 @@ export default function ReportPage() {
   const prev = () => setStep((s) => Math.max(s - 1, 0));
 
   const uploadEvidenceInBackground = async (recordId, externalReportId, filesToUpload) => {
+    setUploadingFiles(true);
     try {
       const supabase = createClient();
       for (const file of filesToUpload) {
@@ -114,6 +128,8 @@ export default function ReportPage() {
       }
     } catch (err) {
       console.error("Background evidence upload failed:", err);
+    } finally {
+      setUploadingFiles(false);
     }
   };
 
@@ -170,6 +186,18 @@ export default function ReportPage() {
                 <p>Save this ID and your passphrase somewhere safe.</p>
                 <p>They are your <em>only</em> key to track your report.</p>
               </div>
+
+              {uploadingFiles ? (
+                <div className={styles.uploadingNotice}>
+                  <div className={styles.spinner}></div>
+                  <p>Uploading evidence in the background... Please do not close this tab yet.</p>
+                </div>
+              ) : files.length > 0 ? (
+                <div className={styles.uploadSuccess}>
+                  <p>✓ All evidence uploaded securely.</p>
+                </div>
+              ) : null}
+
               <div className={styles.successActions}>
                 <a href="/track" className="btn btn-primary">Track Your Report</a>
                 <a href="/" className="btn btn-ghost">Return Home</a>
