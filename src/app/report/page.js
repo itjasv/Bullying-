@@ -251,7 +251,10 @@ export default function ReportPage() {
                 <input 
                   type="text" 
                   placeholder="Date (optional)"
-                  onFocus={(e) => e.target.type = "date"}
+                  onFocus={(e) => { 
+                    e.target.type = "date";
+                    try { e.target.showPicker(); } catch (err) {} 
+                  }}
                   onBlur={(e) => { if (!e.target.value) e.target.type = "text"; }}
                   className={`input ${styles.dateInput}`} 
                   value={form.incident_date} 
