@@ -219,21 +219,6 @@
 }
 
 /* ===============================================
-   DATE INPUT FIX — dark color-scheme
-   =============================================== */
-.dateInput {
-  color-scheme: dark;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.dateInput::-webkit-calendar-picker-indicator {
-  filter: invert(0.7);
-  cursor: pointer;
-  padding: 4px;
-}
-
-/* ===============================================
    EVIDENCE UPLOAD
    =============================================== */
 .uploadZone {

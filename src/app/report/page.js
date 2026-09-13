@@ -248,7 +248,7 @@ export default function ReportPage() {
 
               <div className="form-group">
                 <label className="label">When did it happen?</label>
-                <input type="date" className={`input ${styles.dateInput}`} value={form.incident_date} onChange={(e) => update("incident_date", e.target.value)} />
+                <input type="date" className="input" value={form.incident_date} onChange={(e) => update("incident_date", e.target.value)} />
               </div>
 
               <div className="form-group">
