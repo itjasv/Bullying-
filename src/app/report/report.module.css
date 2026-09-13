@@ -19,7 +19,7 @@
   align-items: center;
   gap: var(--space-3);
   background: var(--primary-muted);
-  border: 1px solid rgba(91, 154, 139, 0.15);
+  border: 1px solid var(--primary-muted);
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-6);
@@ -44,15 +44,6 @@
   font-weight: 600;
 }
 
-/* ===============================================
-   AMBIENT CANVAS — breathing rings + ruled lines
-   =============================================== */
-.ambientCanvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* ===============================================
    STEP SOUL — handwritten Caveat accent
@@ -276,7 +267,7 @@
   justify-content: center;
   border-radius: 50%;
   background: var(--primary-muted);
-  border: 1px solid rgba(91, 154, 139, 0.15);
+  border: 1px solid var(--primary-muted);
 }
 
 .uploadHint {
@@ -495,7 +486,7 @@
 
 .warningBox {
   background: var(--warning-muted);
-  border: 1px solid rgba(234, 179, 8, 0.15);
+  border: 1px solid var(--warning-muted);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   margin-bottom: var(--space-8);

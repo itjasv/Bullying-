@@ -14,7 +14,7 @@
 }
 
 .nav.scrolled {
-  background: rgba(14, 16, 17, 0.92);
+  background: color-mix(in srgb, var(--surface-1) 92%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--hairline);
@@ -118,7 +118,7 @@
   position: fixed;
   inset: 0;
   z-index: calc(var(--z-sticky) + 1);
-  background: rgba(0, 0, 0, 0.5);
+  background: color-mix(in srgb, var(--canvas) 50%, transparent);
 }
 
 .mobileSheet {

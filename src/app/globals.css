@@ -12,42 +12,42 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust
 
 /* --- Tokens --- */
 :root {
-  /* Canvas and surfaces (near-black, cool blue tint) */
-  --canvas: #08090A;
-  --surface-1: #0e1011;
-  --surface-2: #151718;
-  --surface-3: #1e2022;
-  --surface-4: #272a2c;
+  /* Canvas and surfaces (Light mode, clean aesthetic) */
+  --canvas: #f8f9fa;
+  --surface-1: #ffffff;
+  --surface-2: #f1f3f5;
+  --surface-3: #e9ecef;
+  --surface-4: #dee2e6;
 
-  /* Primary: Teal (safety, stability, not clinical) */
-  --primary: #5B9A8B;
-  --primary-hover: #6BAFA0;
-  --primary-muted: rgba(91, 154, 139, 0.10);
-  --primary-subtle: rgba(91, 154, 139, 0.06);
+  /* Primary: Teal (adjusted slightly darker for white background contrast) */
+  --primary: #4a8274;
+  --primary-hover: #3b6b5f;
+  --primary-muted: rgba(74, 130, 116, 0.10);
+  --primary-subtle: rgba(74, 130, 116, 0.06);
 
   /* Text hierarchy */
-  --text-high: #E2E4E9;
-  --text-mid: #8B8F96;
-  --text-low: #53575E;
+  --text-high: #212529;
+  --text-mid: #495057;
+  --text-low: #868e96;
 
   /* Borders */
-  --hairline: #23252A;
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-focus: rgba(91, 154, 139, 0.5);
+  --hairline: #e9ecef;
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --border-focus: rgba(74, 130, 116, 0.5);
 
   /* Specular highlight for elevated surfaces */
-  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 
   /* Semantic */
-  --success: #22c55e;
-  --success-muted: rgba(34, 197, 94, 0.10);
-  --warning: #eab308;
-  --warning-muted: rgba(234, 179, 8, 0.10);
-  --danger: #ef4444;
-  --danger-muted: rgba(239, 68, 68, 0.10);
-  --info: #3b82f6;
-  --info-muted: rgba(59, 130, 246, 0.10);
+  --success: #16a34a;
+  --success-muted: rgba(22, 163, 74, 0.10);
+  --warning: #ca8a04;
+  --warning-muted: rgba(202, 138, 4, 0.10);
+  --danger: #dc2626;
+  --danger-muted: rgba(220, 38, 38, 0.10);
+  --info: #2563eb;
+  --info-muted: rgba(37, 99, 235, 0.10);
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -88,6 +88,45 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust
   --max-width: 1200px;
   --max-width-narrow: 640px;
   --navbar-height: 56px;
+}
+
+.dark {
+  /* Canvas and surfaces (near-black, cool blue tint) */
+  --canvas: #08090A;
+  --surface-1: #0e1011;
+  --surface-2: #151718;
+  --surface-3: #1e2022;
+  --surface-4: #272a2c;
+
+  /* Primary: Teal (safety, stability, not clinical) */
+  --primary: #5B9A8B;
+  --primary-hover: #6BAFA0;
+  --primary-muted: rgba(91, 154, 139, 0.10);
+  --primary-subtle: rgba(91, 154, 139, 0.06);
+
+  /* Text hierarchy */
+  --text-high: #E2E4E9;
+  --text-mid: #8B8F96;
+  --text-low: #53575E;
+
+  /* Borders */
+  --hairline: #23252A;
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-focus: rgba(91, 154, 139, 0.5);
+
+  /* Specular highlight for elevated surfaces */
+  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Semantic */
+  --success: #22c55e;
+  --success-muted: rgba(34, 197, 94, 0.10);
+  --warning: #eab308;
+  --warning-muted: rgba(234, 179, 8, 0.10);
+  --danger: #ef4444;
+  --danger-muted: rgba(239, 68, 68, 0.10);
+  --info: #3b82f6;
+  --info-muted: rgba(59, 130, 246, 0.10);
 }
 
 /* --- Base --- */

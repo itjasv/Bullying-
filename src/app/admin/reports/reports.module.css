@@ -50,7 +50,9 @@
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: var(--space-6);
+  box-sizing: border-box;
 }
 
 .modalHeader {
@@ -93,6 +95,8 @@
   gap: 2px;
   font-size: 14px;
   color: var(--text-high);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .detailLabel {
@@ -268,6 +272,7 @@
 .evidenceMeta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-3);
   font-size: 12px;
 }
@@ -321,6 +326,8 @@
     padding: var(--space-4);
     max-height: 94vh;
     border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 100%;
   }
   .filters { flex-direction: column; }
   .filters .input, .filters select { max-width: 100%; }

@@ -13,15 +13,7 @@
   z-index: 2;
 }
 
-/* ===============================================
-   SONAR CANVAS — expanding pulse rings + grid
-   =============================================== */
-.sonarCanvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
+
 
 /* ===============================================
    HEADING
@@ -267,7 +259,7 @@
 
 .messageReporter {
   background: var(--primary-muted);
-  border: 1px solid rgba(91, 154, 139, 0.12);
+  border: 1px solid var(--primary-muted);
   align-self: flex-end;
 }
 

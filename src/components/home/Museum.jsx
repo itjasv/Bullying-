@@ -18,8 +18,6 @@ const FRAGMENTS = [
 export default function Museum() {
   return (
     <section className={styles.section}>
-      <div className={styles.frame} />
-
       {/* Scattered confessional fragments, twinkling */}
       {FRAGMENTS.map((f, i) => (
         <p

@@ -40,7 +40,6 @@ export default function ReportPage() {
   const [reportId, setReportId] = useState(null);
   const [errors, setErrors] = useState({});
   const [idemKey] = useState(() => generateIdempotencyKey());
-  const breathRef = useRef(null);
 
   const [form, setForm] = useState({
     type: "", severity: "", description: "", location: "",
@@ -55,71 +54,6 @@ export default function ReportPage() {
     setErrors((prev) => ({ ...prev, [field]: null }));
   };
 
-  useEffect(() => {
-    const canvas = breathRef.current;
-    if (!canvas) return;
-
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const ctx = canvas.getContext("2d");
-    let raf;
-    const draw = (t) => {
-      const dpr = window.devicePixelRatio || 1;
-      const w = canvas.width / dpr;
-      const h = canvas.height / dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
-
-      const cx = w * 0.85;
-      const cy = h * 0.4;
-      const breathCycle = (Math.sin(t / 3000) + 1) / 2;
-
-      for (let i = 0; i < 3; i++) {
-        const baseR = 60 + i * 50;
-        const r = baseR + breathCycle * 20;
-        const alpha = 0.025 - i * 0.007;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(91, 154, 139, " + Math.max(alpha, 0) + ")";
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.015)";
-      ctx.lineWidth = 0.5;
-      const lineSpacing = 32;
-      for (let y = 120; y < h; y += lineSpacing) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
-      }
-
-      ctx.strokeStyle = "rgba(91, 154, 139, 0.04)";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      const marginX = Math.min(w * 0.08, 80);
-      ctx.moveTo(marginX, 0);
-      ctx.lineTo(marginX, h);
-      ctx.stroke();
-
-      raf = requestAnimationFrame(draw);
-    };
-    raf = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
 
   const validateStep = () => {
     const e = {};
@@ -164,12 +98,18 @@ export default function ReportPage() {
             const formData = new FormData();
             formData.append("report_id", data.id);
             files.forEach((f) => formData.append("files", f));
-            await fetch("/api/reports/evidence", {
+            const evidenceRes = await fetch("/api/reports/evidence", {
               method: "POST",
               body: formData,
             });
+            if (!evidenceRes.ok) {
+              const errData = await evidenceRes.json();
+              console.error("Evidence upload failed:", errData);
+              alert("Your report was submitted, but some evidence files failed to upload. This could be due to file size limits or server configuration.");
+            }
           } catch (uploadErr) {
             console.error("Evidence upload warning:", uploadErr);
+            alert("Your report was submitted, but a network error prevented evidence files from uploading.");
           }
         }
         setReportId(data.report_id);
@@ -187,10 +127,9 @@ export default function ReportPage() {
   if (submitted) {
     return (
       <>
-        <Navbar />
-        <div className={styles.page}>
-          <canvas ref={breathRef} className={styles.ambientCanvas} />
-          <div className={styles.successStage}>
+      <Navbar />
+      <div className={styles.page}>
+        <div className={styles.successStage}>
             <div className={styles.successCenter}>
               <p className={styles.successSoul}>your voice has been heard</p>
               <div className={styles.idCard}>
@@ -220,7 +159,6 @@ export default function ReportPage() {
     <>
       <Navbar />
       <div className={styles.page}>
-        <canvas ref={breathRef} className={styles.ambientCanvas} />
 
         <div className={styles.container}>
           <div className={styles.anonNotice}>

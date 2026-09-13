@@ -17,87 +17,11 @@ export default function TrackPage() {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const threadRef = useRef(null);
-  const sonarRef = useRef(null);
 
   useEffect(() => {
     if (threadRef.current) threadRef.current.scrollTop = threadRef.current.scrollHeight;
   }, [data?.messages?.length]);
 
-  /* Sonar pulse canvas — unique to track page */
-  useEffect(() => {
-    const canvas = sonarRef.current;
-    if (!canvas) return;
-
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const ctx = canvas.getContext("2d");
-    let raf;
-    const pulses = []; // active pulse rings
-
-    const draw = (t) => {
-      const dpr = window.devicePixelRatio || 1;
-      const w = canvas.width / dpr;
-      const h = canvas.height / dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
-
-      const cx = w * 0.5;
-      const cy = h * 0.35;
-
-      // Spawn a new pulse every ~4 seconds
-      if (pulses.length === 0 || t - pulses[pulses.length - 1].born > 4000) {
-        pulses.push({ born: t });
-      }
-
-      // Draw expanding pulse rings
-      for (let i = pulses.length - 1; i >= 0; i--) {
-        const age = t - pulses[i].born;
-        const maxAge = 8000;
-        if (age > maxAge) { pulses.splice(i, 1); continue; }
-
-        const progress = age / maxAge;
-        const r = progress * Math.min(w, h) * 0.6;
-        const alpha = (1 - progress) * 0.04;
-
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(91, 154, 139, ${alpha})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      // Center crosshair — tiny, faint
-      ctx.strokeStyle = "rgba(91, 154, 139, 0.06)";
-      ctx.lineWidth = 0.5;
-      ctx.beginPath(); ctx.moveTo(cx - 12, cy); ctx.lineTo(cx + 12, cy); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(cx, cy - 12); ctx.lineTo(cx, cy + 12); ctx.stroke();
-
-      // Faint grid dots
-      ctx.fillStyle = "rgba(255, 255, 255, 0.012)";
-      const spacing = 48;
-      for (let x = spacing; x < w; x += spacing) {
-        for (let y = spacing; y < h; y += spacing) {
-          ctx.fillRect(x, y, 1, 1);
-        }
-      }
-
-      raf = requestAnimationFrame(draw);
-    };
-    raf = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
 
   const handleTrack = async (e) => {
     e.preventDefault();
@@ -140,7 +64,6 @@ export default function TrackPage() {
       <>
         <Navbar />
         <div className={styles.page}>
-          <canvas ref={sonarRef} className={styles.sonarCanvas} />
 
           <div className={styles.container}>
             <p className={styles.soulText}>find your report</p>
@@ -205,7 +128,6 @@ export default function TrackPage() {
     <>
       <Navbar />
       <div className={styles.page}>
-        <canvas ref={sonarRef} className={styles.sonarCanvas} />
 
         <div className={styles.container}>
           {/* Header */}

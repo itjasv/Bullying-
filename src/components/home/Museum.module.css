@@ -8,19 +8,6 @@
   overflow: hidden;
 }
 
-.frame {
-  position: absolute;
-  top: 32px;
-  left: 32px;
-  right: 32px;
-  bottom: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.025);
-  border-radius: 2px;
-  pointer-events: none;
-}
-
-
-
 
 /* --- Scattered confessional fragments --- */
 .fragment {
@@ -43,7 +30,7 @@
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.12; text-shadow: none; }
-  50% { opacity: 0.5; text-shadow: 0 0 8px rgba(91, 154, 139, 0.3); }
+  50% { opacity: 0.5; text-shadow: 0 0 8px var(--primary-muted); }
 }
 
 /* --- Center piece --- */
@@ -81,7 +68,6 @@
 /* --- Mobile --- */
 @media (max-width: 767px) {
   .section { min-height: 80vh; }
-  .frame { top: 16px; left: 16px; right: 16px; bottom: 16px; }
   .word { font-size: 52px; }
 
   .fragment {

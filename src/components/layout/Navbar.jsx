@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Navbar.module.css";
 
 const NAV_LINKS = [
@@ -72,16 +73,19 @@ export default function Navbar() {
           </div>
 
           <div className={styles.right}>
-            {authChecked && (
-              user ? (
-                <Link href="/dashboard" className={styles.authBtn}>
-                  Dashboard
-                </Link>
-              ) : (
-                <Link href="/login" className={styles.authBtn}>
-                  Sign In
-                </Link>
-              )
+            <ThemeToggle />
+            {!authChecked ? (
+              <div className={styles.authBtn} style={{ visibility: "hidden" }}>
+                Dashboard
+              </div>
+            ) : user ? (
+              <Link href="/dashboard" className={styles.authBtn}>
+                Dashboard
+              </Link>
+            ) : (
+              <Link href="/login" className={styles.authBtn}>
+                Sign In
+              </Link>
             )}
             <button
               className={styles.toggle}
@@ -107,7 +111,11 @@ export default function Navbar() {
               </Link>
             ))}
             <div className={styles.mobileDivider} />
-            {user ? (
+            {!authChecked ? (
+              <div className={styles.mobileLink} style={{ visibility: "hidden" }}>
+                Dashboard
+              </div>
+            ) : user ? (
               <Link href="/dashboard" className={styles.mobileLink}>
                 Dashboard
               </Link>
