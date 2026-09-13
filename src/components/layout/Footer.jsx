@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Instagram } from "lucide-react";
 import styles from "./Footer.module.css";
 
 const QUICK_LINKS = [
@@ -17,9 +18,7 @@ const INFO_LINKS = [
 ];
 
 const SOCIAL = [
-  { href: "https://instagram.com/ragraksha", label: "Instagram", icon: "IG" },
-  { href: "https://x.com/ragraksha", label: "X (Twitter)", icon: "X" },
-  { href: "https://linkedin.com/company/ragraksha", label: "LinkedIn", icon: "LI" },
+  { href: "https://www.instagram.com/ragraksha?stkn=azBkcW94ODBsaXUx", label: "Instagram", icon: <Instagram size={20} /> },
 ];
 
 export default function Footer() {
