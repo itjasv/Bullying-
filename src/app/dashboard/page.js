@@ -157,7 +157,7 @@ export default function UserDashboard() {
               </div>
 
               {(user.role === "admin" || user.role === "super_admin") && (
-                <a href="/admin" className="btn btn-primary" style={{ marginTop: 16, display: "inline-block" }}>
+                <a href="/admin" className="btn btn-primary" style={{ marginTop: 16 }}>
                   Go to Admin Panel
                 </a>
               )}
