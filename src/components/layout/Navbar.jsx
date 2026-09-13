@@ -67,7 +67,7 @@ export default function Navbar() {
                 Dashboard
               </div>
             ) : user ? (
-              <Link href="/dashboard" className={styles.authBtn}>
+              <Link href="/dashboard" className={styles.authBtn} prefetch={true}>
                 Dashboard
               </Link>
             ) : (
@@ -104,7 +104,7 @@ export default function Navbar() {
                 Dashboard
               </div>
             ) : user ? (
-              <Link href="/dashboard" className={styles.mobileLink}>
+              <Link href="/dashboard" className={styles.mobileLink} prefetch={true}>
                 Dashboard
               </Link>
             ) : (
