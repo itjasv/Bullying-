@@ -76,6 +76,47 @@ export default function ReportPage() {
   const next = () => { if (validateStep()) setStep((s) => Math.min(s + 1, STEPS.length - 1)); };
   const prev = () => setStep((s) => Math.max(s - 1, 0));
 
+  const uploadEvidenceInBackground = async (recordId, externalReportId, filesToUpload) => {
+    try {
+      const supabase = createClient();
+      for (const file of filesToUpload) {
+        const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "dat";
+        const randomSuffix = Math.random().toString(36).substring(2, 10);
+        const storagePath = `${externalReportId}/${Date.now()}_${randomSuffix}.${ext}`;
+
+        // Direct upload to Supabase Storage
+        const { error: uploadErr } = await supabase.storage
+          .from("evidence")
+          .upload(storagePath, file, {
+            contentType: file.type || "application/octet-stream",
+            upsert: false,
+          });
+
+        if (uploadErr) {
+          console.error("Supabase Storage error:", uploadErr);
+          continue;
+        }
+
+        // Insert metadata into the evidence table
+        const { error: insertErr } = await supabase.from("evidence").insert({
+          report_id: recordId,
+          file_url: storagePath,
+          file_name: storagePath.split("/").pop(),
+          file_type: file.type || "application/octet-stream",
+          media_type: getMediaType(file),
+          file_size_bytes: file.size,
+          original_file_name: file.name
+        });
+
+        if (insertErr) {
+          console.error("Evidence metadata error:", insertErr);
+        }
+      }
+    } catch (err) {
+      console.error("Background evidence upload failed:", err);
+    }
+  };
+
   const handleSubmit = async () => {
     if (!validateStep()) return;
     setSubmitting(true);
@@ -93,49 +134,11 @@ export default function ReportPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        // Upload evidence files if attached
+        // Kick off evidence upload in the background (fire and forget)
         if (files.length > 0 && data.id) {
-          try {
-            const supabase = createClient();
-            for (const file of files) {
-              const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "dat";
-              const randomSuffix = Math.random().toString(36).substring(2, 10);
-              const storagePath = `${data.report_id}/${Date.now()}_${randomSuffix}.${ext}`;
-
-              // Direct upload to Supabase Storage (bypasses Next.js 4MB payload limits)
-              const { error: uploadErr } = await supabase.storage
-                .from("evidence")
-                .upload(storagePath, file, {
-                  contentType: file.type || "application/octet-stream",
-                  upsert: false,
-                });
-
-              if (uploadErr) {
-                console.error("Supabase Storage error:", uploadErr);
-                alert(`Warning: Failed to upload ${file.name}. Ensure you ran the SQL migration to create the evidence bucket.`);
-                continue;
-              }
-
-              // Insert metadata into the evidence table
-              const { error: insertErr } = await supabase.from("evidence").insert({
-                report_id: data.id,
-                file_url: storagePath,
-                file_name: storagePath.split("/").pop(),
-                file_type: file.type || "application/octet-stream",
-                media_type: getMediaType(file),
-                file_size_bytes: file.size,
-                original_file_name: file.name
-              });
-
-              if (insertErr) {
-                console.error("Evidence metadata error:", insertErr);
-              }
-            }
-          } catch (uploadErr) {
-            console.error("Evidence upload error:", uploadErr);
-            alert("Your report was submitted, but an error prevented evidence files from uploading.");
-          }
+          uploadEvidenceInBackground(data.id, data.report_id, files);
         }
+        
         setReportId(data.report_id);
         setSubmitted(true);
       } else {
