@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/components/providers/AuthProvider";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Navbar.module.css";
 
@@ -21,8 +21,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [authChecked, setAuthChecked] = useState(false);
+  const { user, checked: authChecked } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -37,20 +36,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // Check auth state
-  useEffect(() => {
-    async function checkAuth() {
-      try {
-        const supabase = createClient();
-        const { data: { user: authUser } } = await supabase.auth.getUser();
-        setUser(authUser);
-      } catch {
-        // Supabase not configured, ignore
-      }
-      setAuthChecked(true);
-    }
-    checkAuth();
-  }, []);
+
 
   return (
     <>
@@ -73,7 +59,9 @@ export default function Navbar() {
           </div>
 
           <div className={styles.right}>
-            <ThemeToggle />
+            <div className={styles.desktopThemeToggle}>
+              <ThemeToggle />
+            </div>
             {!authChecked ? (
               <div className={styles.authBtn} style={{ visibility: "hidden" }}>
                 Dashboard
@@ -124,6 +112,11 @@ export default function Navbar() {
                 Sign In
               </Link>
             )}
+            
+            <div className={styles.mobileThemeToggle}>
+              <span className={styles.mobileThemeLabel}>Switch Theme</span>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       )}
