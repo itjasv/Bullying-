@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { useTheme } from "next-themes";
 import styles from "./BullyingWeb.module.css";
 
 const NODES = [
@@ -62,6 +63,7 @@ function drawScribbleLine(ctx, x1, y1, x2, y2, rng) {
 export default function BullyingWeb() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -83,7 +85,8 @@ export default function BullyingWeb() {
       const cx = rect.width * 0.5;
       const cy = rect.height * 0.5;
 
-      ctx.strokeStyle = "rgba(91, 154, 139, 0.10)";
+      const isDark = resolvedTheme === "dark";
+      ctx.strokeStyle = isDark ? "rgba(91, 154, 139, 0.10)" : "rgba(91, 154, 139, 0.30)";
       ctx.lineWidth = 1;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
@@ -115,7 +118,7 @@ export default function BullyingWeb() {
     draw();
     window.addEventListener("resize", draw);
     return () => window.removeEventListener("resize", draw);
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <section className={styles.section}>
