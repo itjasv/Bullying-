@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CATEGORIES, SEVERITIES } from "@/lib/constants/categories";
+import { createClient } from "@/lib/supabase/client";
 import { generateIdempotencyKey } from "@/lib/utils/idempotency";
 import styles from "./report.module.css";
 
@@ -95,21 +96,44 @@ export default function ReportPage() {
         // Upload evidence files if attached
         if (files.length > 0 && data.id) {
           try {
-            const formData = new FormData();
-            formData.append("report_id", data.id);
-            files.forEach((f) => formData.append("files", f));
-            const evidenceRes = await fetch("/api/reports/evidence", {
-              method: "POST",
-              body: formData,
-            });
-            if (!evidenceRes.ok) {
-              const errData = await evidenceRes.json();
-              console.error("Evidence upload failed:", errData);
-              alert("Your report was submitted, but some evidence files failed to upload. This could be due to file size limits or server configuration.");
+            const supabase = createClient();
+            for (const file of files) {
+              const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "dat";
+              const randomSuffix = Math.random().toString(36).substring(2, 10);
+              const storagePath = `${data.report_id}/${Date.now()}_${randomSuffix}.${ext}`;
+
+              // Direct upload to Supabase Storage (bypasses Next.js 4MB payload limits)
+              const { error: uploadErr } = await supabase.storage
+                .from("evidence")
+                .upload(storagePath, file, {
+                  contentType: file.type || "application/octet-stream",
+                  upsert: false,
+                });
+
+              if (uploadErr) {
+                console.error("Supabase Storage error:", uploadErr);
+                alert(`Warning: Failed to upload ${file.name}. Ensure you ran the SQL migration to create the evidence bucket.`);
+                continue;
+              }
+
+              // Insert metadata into the evidence table
+              const { error: insertErr } = await supabase.from("evidence").insert({
+                report_id: data.id,
+                file_url: storagePath,
+                file_name: storagePath.split("/").pop(),
+                file_type: file.type || "application/octet-stream",
+                media_type: getMediaType(file),
+                file_size_bytes: file.size,
+                original_file_name: file.name
+              });
+
+              if (insertErr) {
+                console.error("Evidence metadata error:", insertErr);
+              }
             }
           } catch (uploadErr) {
-            console.error("Evidence upload warning:", uploadErr);
-            alert("Your report was submitted, but a network error prevented evidence files from uploading.");
+            console.error("Evidence upload error:", uploadErr);
+            alert("Your report was submitted, but an error prevented evidence files from uploading.");
           }
         }
         setReportId(data.report_id);
