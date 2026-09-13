@@ -113,7 +113,7 @@
 
 .navActive .navIcon {
   background: var(--primary);
-  color: var(--bg);
+  color: #fff;
 }
 
 .navLabel {
