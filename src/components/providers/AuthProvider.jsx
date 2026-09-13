@@ -11,25 +11,36 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let mounted = true;
-    const supabase = createClient();
+    let authListener = null;
 
-    supabase.auth.getUser().then(({ data }) => {
-      if (mounted) {
-        setUser(data?.user || null);
-        setChecked(true);
-      }
-    });
+    try {
+      const supabase = createClient();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (mounted) {
-        setUser(session?.user || null);
-        setChecked(true);
-      }
-    });
+      supabase.auth.getUser().then(({ data }) => {
+        if (mounted) {
+          setUser(data?.user || null);
+          setChecked(true);
+        }
+      });
+
+      const { data } = supabase.auth.onAuthStateChange((event, session) => {
+        if (mounted) {
+          setUser(session?.user || null);
+          setChecked(true);
+        }
+      });
+      authListener = data;
+    } catch (err) {
+      // Gracefully handle missing Supabase credentials in dev mode
+      console.warn("Supabase client could not be created. Missing environment variables?");
+      if (mounted) setChecked(true);
+    }
 
     return () => {
       mounted = false;
-      authListener.subscription.unsubscribe();
+      if (authListener?.subscription) {
+        authListener.subscription.unsubscribe();
+      }
     };
   }, []);
 
