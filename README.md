@@ -1,4 +1,4 @@
-# SafeVoice - Anonymous Bullying Reporting Platform
+# Anonymous Bullying Reporting Platform
 
 A production-grade, anonymous bullying reporting and case management system built for Indian educational institutions.
 
